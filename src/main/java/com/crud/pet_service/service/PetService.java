@@ -1,5 +1,6 @@
 package com.crud.pet_service.service;
 
+import com.crud.pet_service.dto.PetDto;
 import com.crud.pet_service.model.Pet;
 
 import java.util.List;
