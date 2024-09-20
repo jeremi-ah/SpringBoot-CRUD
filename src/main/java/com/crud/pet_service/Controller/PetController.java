@@ -40,8 +40,8 @@ public class PetController {
 
     @GetMapping("/pet/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Optional<Pet> getPet(@PathVariable Long id) throws Exception {
-        return petService.getPetById(id);
+    public Pet getPet(@PathVariable Long id) throws Exception {
+        return petService.getPet(id);
     }
 
 }

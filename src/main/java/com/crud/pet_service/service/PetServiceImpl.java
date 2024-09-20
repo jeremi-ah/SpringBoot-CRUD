@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 
@@ -36,7 +37,9 @@ public class PetServiceImpl implements PetService {
     }
 
     @Override
-    public Optional<Pet> getPetById(Long id) throws Exception {
-        return petRepository.findById(id);
+    public Pet getPet(Long id) {
+        return petRepository.findById(id).orElseThrow(
+                () ->new NoSuchElementException(
+                        "No PET PRESENT WITH ID "+id));
     }
 }
