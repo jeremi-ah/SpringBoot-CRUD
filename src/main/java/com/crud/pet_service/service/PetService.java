@@ -10,7 +10,7 @@ import java.util.Optional;
 
 public interface PetService {
     Pet addPet(Pet pet);
-    List<Pet> getPets();
+    List<PetDto> getPets();
     Pet updatePet(Pet pet);
     void deletePet(Long id);
     Pet getPet(Long id) throws NoSuchElementException;

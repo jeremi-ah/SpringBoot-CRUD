@@ -1,5 +1,6 @@
 package com.crud.pet_service.Controller;
 
+import com.crud.pet_service.dto.PetDto;
 import com.crud.pet_service.model.Pet;
 import com.crud.pet_service.service.PetService;
 import lombok.AllArgsConstructor;
@@ -17,7 +18,7 @@ public class PetController {
 
     @GetMapping("/all")
     @ResponseStatus(HttpStatus.OK)
-    public List<Pet> getAllPets() {
+    public List<PetDto> getAllPets() {
     return petService.getPets();
     }
 

@@ -1,13 +1,13 @@
 package com.crud.pet_service.service;
 
+import com.crud.pet_service.dto.PetDto;
 import com.crud.pet_service.model.Pet;
 import com.crud.pet_service.repository.PetRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Optional;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -15,14 +15,26 @@ import java.util.Optional;
 public class PetServiceImpl implements PetService {
     private PetRepository petRepository;
 
+    //function converting Pet Entity to dto
+    private PetDto convertToDto(Pet pet){
+        PetDto petDto = new PetDto();
+        petDto.setAge(pet.getAge());
+        petDto.setName(pet.getName());
+        petDto.setColor(pet.getColor());
+        petDto.setSpecies(pet.getSpecies());
+        return petDto;
+    }
+
     @Override
     public Pet addPet(Pet pet) {
         return petRepository.save(pet) ;
     }
 
     @Override
-    public List<Pet> getPets() {
-        return petRepository.findAll().stream().toList();
+    public List<PetDto> getPets() {
+        return petRepository.findAll().stream()
+                .map(this::convertToDto)
+                .collect(Collectors.toList());
     }
 
     @Override
